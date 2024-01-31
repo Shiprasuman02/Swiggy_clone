@@ -1,3 +1,23 @@
+# Parcel
+
+- Dev Build
+- Local Server
+- HMR = Hot Module Replacement
+- File Watching Algorithm - written in c++
+- Caching - Faster Builds
+- Image Optimization
+- Minification
+- Bundling
+- Compress
+- Consistent Hashing
+- Code Splitting
+- Differential Bundling - support older browsers
+- Diagnostic
+- Error Handling
+- HTTPs
+- Tree Shaking - remove unused code
+- Different dev and prod bundles
+
 /\*\*
 
 - Header
@@ -34,3 +54,8 @@ import {Component} from "path";
 - useEffect()
 
 # whenever a state variable updates react will re-render the component
+
+# 2 types Routing in web apps
+
+- Client Side Routing
+- Server Side Routing
