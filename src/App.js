@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import App from './App';
 import Header from "./components/Header";
@@ -9,6 +9,7 @@ import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 // import Grocery from "./components/Grocery";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import UserContext from "./utils/UserContext";
 
 //not using keys (not acceptable) <<<<< index as key <<<<<<<<<<<< unique id
 
@@ -24,13 +25,28 @@ const Grocery = lazy(() => import("./components/Grocery"));
 const About = lazy(() => import("./components/About"));
 
 const AppLayout = () => {
-  console.log(<Body />);
-  return (
-    <div className="app">
-      <Header />
-      <Outlet />
 
-    </div>
+  const [userName, setUserName] = useState();
+
+  //authentication
+  useEffect(() => {
+    //Make an API call and send username and password
+    const data = {
+      name: "Shipra Suman",
+    };
+    setUserName(data.name);
+  }, [])
+
+
+  // console.log(<Body />);
+  return (
+    <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
+
+      <div className="app">
+        <Header />
+        <Outlet />
+      </div>
+    </UserContext.Provider>
   );
 };
 

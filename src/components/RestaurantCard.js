@@ -1,7 +1,11 @@
+import { useContext } from "react";
 import { CDN_URL } from "../utils/constants";
+import UserContext from "../utils/UserContext";
 
 const RestaurantCard = (props) => {
     const { resInfo } = props;
+    const { loggedInUser } = useContext(UserContext);
+
 
     const { name, avgRating, cuisines, costForTwo } = resInfo?.info;
     return (
@@ -12,8 +16,23 @@ const RestaurantCard = (props) => {
             <h4>{avgRating} stars</h4>
             <h4>{costForTwo} </h4>
             <h4>{resInfo.info.sla.deliveryTime} minutes</h4>
+            <h4>User : {loggedInUser}</h4>
         </div>
     );
 };
 
+// Higher Order Component 
+
+//input - RestaurantCard => RestaurantCardPromoted
+
+export const withPromotedLabel = (RestaurantCard) => {
+    return (props) => {
+        return (
+            <div>
+                <label className="absolute bg-black text-white m-2 p-2 rounded-lg">Promoted</label>
+                <RestaurantCard {...props} />
+            </div>
+        );
+    };
+};
 export default RestaurantCard;
