@@ -4,7 +4,7 @@ import { useState, useEffect, useContext } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
-import UserContext from "../utils/UserContext";
+// import UserContext from "../utils/UserContext";
 
 const Body = () => {
     // Local State Variable - Super powerful variable
@@ -45,7 +45,7 @@ const Body = () => {
         </h1>
     );
 
-    const { loggedInUser, setUserName } = useContext(UserContext);
+    // const { loggedInUser, setUserName } = useContext(UserContext);
 
     return listOfRestaurants.length === 0 ? (
         <Shimmer />
@@ -92,22 +92,22 @@ const Body = () => {
                     >
                         Top Rated Restaurant
                     </button>
-                    <div className="m-10">
+                    {/* <div className="m-10">
                         <label >UserName : </label>
                         <input className="border border-black p-2"
                             value={loggedInUser}
-                            onChange={(e) => setUserName(e.target.value)} />
-                    </div>
+                            onChange={(e) => setUserName(e.target.value)} /> 
+                    </div> */}
                 </div>
 
             </div>
             <div className="flex flex-wrap">
-                {filteredRestaurant.map((restaurant) => (
+                {filteredRestaurant?.map((restaurant) => (
                     <Link
-                        key={restaurant.info.id}
-                        to={"/restaurants/" + restaurant.info.id}
+                        key={restaurant?.info?.id}
+                        to={"/restaurants/" + restaurant?.info?.id}
                     >
-                        {restaurant.info.promoted ? (
+                        {restaurant?.info?.promoted ? (
                             <RestaurantCardPromoted resInfo={restaurant} />
                         ) : (
                             <RestaurantCard resInfo={restaurant} />
